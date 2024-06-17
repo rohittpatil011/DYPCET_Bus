@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Faculty Login</title>
+    <link rel="stylesheet" href="login_teacher.css">
+    <script>
+        function validateForm() {
+            const email = document.forms["loginForm"]["email"].value;
+            const password = document.forms["loginForm"]["password"].value;
+
+            const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+            const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
+
+            if (!emailRegex.test(email)) {
+                alert("Please enter a valid email address.");
+                return false;
+            }
+
+            if (!passwordRegex.test(password)) {
+                alert("Password must be at least 8 characters long and include at least one uppercase letter, one lowercase letter, and one number.");
+                return false;
+            }
+
+            return true;
+        }
+    </script>
+</head>
+
+<body>
+    <img class="logod" src="./images/logod.png" alt="">
+    <div class="wrapper">
+        <h2>Faculty Login</h2>
+
+        <form name="loginForm" action="login_teacher.php" method="POST" onsubmit="return validateForm()">
+            <div class="input-box">
+                <input type="email" name="email" placeholder="Email" required>
+            </div>
+            <div class="input-box">
+                <input type="password" name="password" placeholder="Password" required minlength="8">
+            </div>
+            <div class="input-box button">
+                <input type="submit" name="submit" value="Login">
+            </div>
+        </form>
+        <div class="sign-txt">Are you a New User? <a href="signin_teacher.html">Sign in Now</a></div>
+    </div>
+
+</body>
+
+</html>

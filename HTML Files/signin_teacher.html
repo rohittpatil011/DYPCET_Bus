@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign in</title>
+    <link rel="stylesheet" href="signin_teacher.css">
+    <script>
+        function validateForm() {
+            const fullName = document.forms["registerTeacherForm"]["name"].value;
+            const email = document.forms["registerTeacherForm"]["email"].value;
+            const mobileNo = document.forms["registerTeacherForm"]["mobileno"].value;
+            const password = document.forms["registerTeacherForm"]["password"].value;
+            const confirmPassword = document.forms["registerTeacherForm"]["cpass"].value;
+
+            const nameRegex = /^[a-zA-Z\s]+$/;
+            const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+            const mobileNoRegex = /^\d{10}$/;
+            const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
+
+            if (!nameRegex.test(fullName)) {
+                alert("Please enter a valid full name.");
+                return false;
+            }
+
+            if (!emailRegex.test(email)) {
+                alert("Please enter a valid email address.");
+                return false;
+            }
+
+            if (!mobileNoRegex.test(mobileNo)) {
+                alert("Please enter a valid mobile number (10 digits).");
+                return false;
+            }
+
+            if (!passwordRegex.test(password)) {
+                alert("Password must be at least 8 characters long and include at least one uppercase letter, one lowercase letter, and one number.");
+                return false;
+            }
+
+            if (password !== confirmPassword) {
+                alert("Passwords do not match.");
+                return false;
+            }
+
+            return true;
+        }
+    </script>
+</head>
+
+<body>
+    <!-- <img class="logod" src="./images/logod.png" alt=""> -->
+    <div class="wrapper">
+        <form name="registerTeacherForm" action="register_teacher.php" method="POST" onsubmit="return validateForm()">
+            <div class="name"><h2>Create an Account (Faculty)</h2></div>
+            <div class="input-box">
+                <input type="text" name="name" placeholder="Full Name" required pattern="[a-zA-Z\s]+">
+            </div>
+            <div class="input-box">
+                <input type="email" name="email" placeholder="Email" required>
+            </div>
+            <div class="input-box">
+                <input type="tel" name="mobileno" placeholder="Mobile No." required pattern="\d{10}">
+            </div>
+            <div class="input-box">
+                <input type="text" name="facultyid" placeholder="Faculty ID" required>
+            </div>
+            <div class="input-box">
+                <input type="text" name="department" placeholder="Department" required>
+            </div>
+            <div class="input-box">
+                <input type="number" name="year" placeholder="Academic Year" required>
+            </div>
+            <div class="input-box">
+                <input type="password" name="password" placeholder="Create Password" required minlength="8">
+            </div>
+            <div class="input-box">
+                <input type="password" name="cpass" placeholder="Confirm Password" required minlength="8">
+            </div>
+            <div class="input-box button">
+                <input type="submit" name="submit" value="Sign in">
+            </div>
+        </form>
+    </div>
+</body>
+
+</html>

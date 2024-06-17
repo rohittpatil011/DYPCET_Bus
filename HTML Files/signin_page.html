@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign in</title>
+    <link rel="stylesheet" href="signin_page.css">
+    <script>
+        function validateForm() {
+            const fullName = document.forms["registerForm"]["fullName"].value;
+            const email = document.forms["registerForm"]["email"].value;
+            const mobileNo = document.forms["registerForm"]["mobileno"].value;
+            const password = document.forms["registerForm"]["password"].value;
+            const confirmPassword = document.forms["registerForm"]["cpass"].value;
+
+            const nameRegex = /^[a-zA-Z\s]+$/;
+            const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+            const mobileNoRegex = /^\d{10}$/;
+            const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
+
+            if (!nameRegex.test(fullName)) {
+                alert("Please enter a valid full name.");
+                return false;
+            }
+
+            if (!emailRegex.test(email)) {
+                alert("Please enter a valid email address.");
+                return false;
+            }
+
+            if (!mobileNoRegex.test(mobileNo)) {
+                alert("Please enter a valid mobile number (10 digits).");
+                return false;
+            }
+
+            if (!passwordRegex.test(password)) {
+                alert("Password must be at least 8 characters long and include at least one uppercase letter, one lowercase letter, and one number.");
+                return false;
+            }
+
+            if (password !== confirmPassword) {
+                alert("Passwords do not match.");
+                return false;
+            }
+
+            return true;
+        }
+    </script>
+</head>
+
+<body>
+    <img class="logod" src="./images/logod.png" alt="">
+    <div class="wrapper">
+        <form name="registerForm" action="register.php" method="POST" onsubmit="return validateForm()">
+            <h2>Create an Account (Students)</h2>
+            <div class="input-box">
+                <input type="text" name="fullName" placeholder="Full Name" required pattern="[a-zA-Z\s]+">
+            </div>
+            <div class="input-box">
+                <input type="email" name="email" placeholder="Email" required>
+            </div>
+            <div class="input-box">
+                <input type="tel" name="mobileno" placeholder="Mobile No." required pattern="\d{10}">
+            </div>
+            <div class="input-box">
+                <input type="text" name="uniqueid" placeholder="Unique ID" required>
+            </div>
+            <div class="input-box">
+                <input type="text" name="Rollno" placeholder="Rollno" required>
+            </div>
+            <div class="input-box">
+                <input type="text" name="class" placeholder="class" required>
+            </div>
+            <div class="input-box">
+                <input type="text" name="academic_year" placeholder="Academic Year" required>
+            </div>
+            <div class="input-box">
+                <input type="text" name="Gender" placeholder="Gender" required>
+            </div>
+            <div class="input-box">
+                <input type="password" name="password" placeholder="Create Password" required minlength="8">
+            </div>
+            <div class="input-box">
+                <input type="password" name="cpass" placeholder="Confirm Password" required minlength="8">
+            </div>
+            <div class="input-box button">
+                <input type="submit" name="submit" value="Sign in">
+            </div>
+        </form>
+    </div>
+</body>
+
+</html>
