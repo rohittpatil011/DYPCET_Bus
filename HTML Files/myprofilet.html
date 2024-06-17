@@ -11,43 +11,11 @@
 <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css'>
 
     <!--Only for demo purpose - no need to add.-->
-    <link rel="stylesheet" href="css/demo.css" />
+    <link rel="stylesheet" href="demo.css" />
     
-	    <link rel="stylesheet" href="css/style.css">
+	    <link rel="stylesheet" href="stylee.css">
 </head>
 <body>
-
-<?php
-session_start();
-
-if (!isset($_SESSION['email'])) {
-  header('Location: login.php');
-  exit;
-}
-
-$Hostname = "localhost";
-$username = "root";
-$password = "";
-$dbname = "dypcetbus";
-
-$con = mysqli_connect($Hostname, $username, $password, $dbname);
-if (!$con) {
-  die("Connection Failed: " . $mysqli->error);
-}
-
-$email = $_SESSION['email'];
-
-$query = 'SELECT * FROM `students`';
-$result = $con->query($query);
-
-if ($result->num_rows > 0) {
-  $profile = $result->fetch_assoc();
-} else {
-  echo 'Invalid Username or password!';
-}
-
-mysqli_close($con);
-?>
 		
 
 <header class="ScriptHeader">
